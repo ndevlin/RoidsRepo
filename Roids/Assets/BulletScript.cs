@@ -29,5 +29,32 @@ public class BulletScript : MonoBehaviour
     {
         //Physics engine handles movement, empty for now.      
     }
+
+    
+    void OnCollisionEnter(Collision collision)
+    {
+        // The collision contains a lot of info, but its the colliding
+        // object we're interested in
+
+        Collider collider = collision.collider;
+        
+        if(collider.CompareTag("Asteroid"))
+        {
+            AsteroidScript roid = collider.gameObject.GetComponent<AsteroidScript>();
+
+            //let the other object handle it's own death
+            roid.Die();
+
+            //Destroy this bullet which collided with the Asteroid
+            Destroy(gameObject);
+        }
+        else
+        {
+            // If we collided with something else, print to the console
+            // what the other thing was
+            Debug.Log("Collided with " + collider.tag);
+        }
+    }
+    
 }
 
