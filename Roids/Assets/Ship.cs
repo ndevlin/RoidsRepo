@@ -22,7 +22,6 @@ public class Ship : MonoBehaviour
 
     /* forced changes to rigid body physics parameters should be done through the FixedUpdate() 
     method, not the Update() method*/
-
     void FixedUpdate()
     {
         timer += Time.deltaTime;
@@ -42,6 +41,7 @@ public class Ship : MonoBehaviour
             // Vector3 default initializes all components to 0.0f     
             forceVector.x = 1.0f;
             rotationSpeed = 1.0f;
+
 
             // force thruster     
             if (Input.GetAxisRaw("Vertical") > 0)
@@ -82,6 +82,7 @@ public class Ship : MonoBehaviour
                     GetComponent<Rigidbody>().MoveRotation(rot);
                 }
                 rotationBool = 0.0f;
+
 
                 Debug.Log("Rotation " + rotation);
 
